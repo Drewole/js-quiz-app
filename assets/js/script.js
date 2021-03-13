@@ -10,3 +10,16 @@
 // THEN the game is over
 // WHEN the game is over
 // THEN I can save my initials and my score
+
+
+//Planning
+
+/*
+	1. Create global vars
+	2. Make an object of questions
+	3. Make a timer
+	4. Something to remove 10 seconds for a wrong answer
+	5. Points system
+	6. Local storage save with clear
+
+*/
