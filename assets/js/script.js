@@ -33,5 +33,34 @@
 	9.Need a back to game button that will change it to the welcome game panel.
 
 */
+//Object of questions
+
+var questions = {
+	q1: {
+		question: "What cat says meow?",
+		correct: "c",
+		a: "Tiger",
+		b: "Bear",
+		c: "Garfield",
+		d: "Cat"
+	},
+	q2: {
+		question: "Whats Drews favorite food?",
+		correct: "a",
+		a: "Ramen",
+		b: "Pizza",
+		c: "Mashed Potatoes",
+		d: "Cat"
+	},
+	q2: {
+		question: "Who would you choose to marry?",
+		correct: "b",
+		a: "Betty White",
+		b: "Jennifer Lawrence",
+		c: "Bill Burr",
+		d: "Cat"
+	}
+}
 
 //Global Vars
+
