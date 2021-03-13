@@ -38,7 +38,7 @@
 var questions = {
 	q1: {
 		question: "What cat says meow?",
-		correct: "c",
+		answer: "c",
 		a: "Tiger",
 		b: "Bear",
 		c: "Garfield",
@@ -46,7 +46,7 @@ var questions = {
 	},
 	q2: {
 		question: "Whats Drews favorite food?",
-		correct: "a",
+		answer: "a",
 		a: "Ramen",
 		b: "Pizza",
 		c: "Mashed Potatoes",
@@ -54,7 +54,7 @@ var questions = {
 	},
 	q2: {
 		question: "Who would you choose to marry?",
-		correct: "b",
+		answer: "b",
 		a: "Betty White",
 		b: "Jennifer Lawrence",
 		c: "Bill Burr",
@@ -63,4 +63,11 @@ var questions = {
 }
 
 //Global Vars
+var score = "";
+var time = "";
+var highScoresBtn = document.getElementById("show-scores");
+var introView = document.getElementById("intro");
+var questionsView = document.getElementById("questions");
+var highScoresView = document.getElementById("scoreboard");
+
 
