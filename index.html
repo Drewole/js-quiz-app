@@ -16,10 +16,10 @@
      <body>
           <header>
                <button id="show-scores">High Scores</button>
-               <p clas="time-left">Time Left: <span id="timer">60</span></p>
+               <p clas="time-container">Time Left: <span id="timer">60</span></p>
           </header>
           <div class="container">
-               <div id="intro" class="intro visible">
+               <div class="intro visible">
                     <h1>Welcome to the Javascript Timed Quiz</h1>
                     <p>
                          During this assessment you will presented with a series of random Javascript questions with 60 seconds to answer as many as you can. Answer correctly and you will be awarded 5 points. Answer incorrectly and you will lose 10 seconds from the timer. Answer all questions within the time alotted and you will earn a bonus 25
@@ -28,27 +28,23 @@
                     <h2>Good luck! 👍</h2>
                     <p class="center"><button id="start">Start the Party</button></p>
                </div>
-               <div id="questions" class="questions hidden">
-                    <h2>This will be the question text.</h2>
-                    <ul>
+               <div class="questions hidden">
+                    <h2 id="question-text">This will be the question text.</h2>
+                    <ul id="possible-answers">
                          <li value="a"><span>A: </span>Answer 1</li>
                          <li value="b"><span>B: </span>Answer 2</li>
                          <li value="c"><span>C: </span>Answer 3</li>
                          <li value="d"><span>D: </span>Answer 4</li>
                     </ul>
                </div>
-               <div id="scoreboard" class="initials hidden">
+               <div class="scoreboard hidden">
                     <h2>High Scores</h2>
                     <ol class="high-scores">
                          <li>High Score 1 <span>56</span></li>
-                         <li>High Score 2</li>
-                         <li>High Score 3</li>
-                         <li>High Score 4</li>
-                         <li>High Score 5</li>
                     </ol>
-                    <p>Good job! Your total score is: <span id="final-score"></span></p>
-                    <form action=""><label id="initials" for="name">Enter Your Initials:</label><input type="text" /><br /><button id="submit">Submit</button></form>
-                    <nav><button id="play-again">Play Again</button><button id="clear-score">Clear High Scores</button></nav>
+                    <p>Good job! Your total score is: <span id="final-score">45</span></p>
+                    <form action=""><label for="name">Enter Your Initials:</label><input name="name" id="initials" type="text" /><br /><button id="initials-submit">Submit</button></form>
+                    <nav><button id="play-again">Play Again</button><button id="clear-leaderboard">Clear High Scores</button></nav>
                </div>
           </div>
           <!-- <div class="correct">

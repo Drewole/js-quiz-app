@@ -65,9 +65,34 @@ var questions = {
 //Global Vars
 var score = "";
 var time = "";
+// Grabbing the elements I need
 var highScoresBtn = document.getElementById("show-scores");
-var introView = document.getElementById("intro");
-var questionsView = document.getElementById("questions");
-var highScoresView = document.getElementById("scoreboard");
+var countdownTimer = document.getElementById("timer");
+var timeContainer = document.querySelector(".time-container")
+
+
+// this is the welcome view items
+var startBtn = document.getElementById("start");
+
+//This is the quiz view items
+var questionText = document.getElementById("question-text");
+var possibleAnswersList = document.getElementById("possible-answers");
+var feedbackText = document.getElementById("feedback");
+
+// This is the high scores page
+var highScoresList = document.querySelector(".high-scores");
+var finalScoreLabel = document.getElementById("final-score");
+var userInitials = document.getElementById("initials");
+var initialsSubmit = document.getElementById("initials-submit");
+var playAgain = document.getElementById("play-again");
+var clearLeaderboard = document.getElementById("clear-leaderboard");
+
+
+// views
+var introView = document.querySelector(".intro");
+var questionsView = document.querySelector(".questions");
+var highScoresView = document.querySelector(".scoreboard");
+var correctAnswer = document.querySelector(".correct");
+
 
 
