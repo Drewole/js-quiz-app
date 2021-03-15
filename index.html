@@ -6,24 +6,22 @@
           <meta charset="UTF-8" />
           <meta http-equiv="X-UA-Compatible" content="IE=edge" />
           <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-          <title>Javascript Study App</title>
+          <title>Javascript Study App - Timed Quiz</title>
           <link rel="stylesheet" href="assets/css/reset.css" />
           <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@200;400;600;800&display=swap" rel="stylesheet" />
           <link rel="stylesheet" href="assets/css/style.css" />
-
-          <script src="assets/js/script.js"></script>
      </head>
      <body>
           <header>
-               <button id="show-scores">High Scores</button>
-               <p clas="time-container">Time Left: <span id="timer">60</span></p>
+               <div id="showscores">High Scores</div>
+               <p clas="time-container">Time Left: <span id="timer">20</span></p>
           </header>
           <div class="container">
                <div class="intro visible">
-                    <h1>Welcome to the Javascript Timed Quiz</h1>
+                    <h1>Welcome to a Javascript Timed Quiz</h1>
                     <p>
-                         During this assessment you will presented with a series of random Javascript questions with 60 seconds to answer as many as you can. Answer correctly and you will be awarded 5 points. Answer incorrectly and you will lose 10 seconds from the timer. Answer all questions within the time alotted and you will earn a bonus 25
-                         points as well as points in the amount of time remaining on the clock.
+                         During this assessment you will presented with a series of random Javascript questions with <span class="bold">60 seconds</span> to answer as many as you can. Answer correctly and you will be awarded 5 points. Answer incorrectly and <span class="bold">you will lose 10 seconds</span> from the timer. Answer all questions
+                         within the time alotted and you will <span class="bold">earn a bonus 25 points <span class="strikethrough">as well as points in the amount of time remaining on the clock.</span></span>
                     </p>
                     <h2>Good luck! 👍</h2>
                     <p class="center"><button id="start">Start the Party</button></p>
@@ -36,6 +34,7 @@
                          <li value="c"><span>C: </span>Answer 3</li>
                          <li value="d"><span>D: </span>Answer 4</li>
                     </ul>
+                    <button class="quit">Quit</button>
                </div>
                <div class="scoreboard hidden">
                     <h2>High Scores</h2>
@@ -43,12 +42,13 @@
                          <li>High Score 1 <span>56</span></li>
                     </ol>
                     <p>Good job! Your total score is: <span id="final-score">45</span></p>
-                    <form action=""><label for="name">Enter Your Initials:</label><input name="name" id="initials" type="text" /><br /><button id="initials-submit">Submit</button></form>
+                    <form><label for="name">Enter Your Initials:</label><input name="name" id="initials" type="text" /><br /><button id="initials-submit">Submit</button></form>
                     <nav><button id="play-again">Play Again</button><button id="clear-leaderboard">Clear High Scores</button></nav>
                </div>
           </div>
           <!-- <div class="correct">
                <p id="feedback">CORRECT! +5 points.</p>
           </div> -->
+          <script src="assets/js/script.js"></script>
      </body>
 </html>
