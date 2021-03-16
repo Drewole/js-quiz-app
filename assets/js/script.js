@@ -11,6 +11,8 @@
 // WHEN the game is over
 // THEN I can save my initials and my score
 
+// Additional features as a maybe
+// Answer all questions within the time alotted and you will < span class="bold" > earn a bonus 25 points < span class="strikethrough" > as well as points in the amount of time remaining on the clock.</ ></span >
 
 //Planning
 
@@ -33,10 +35,10 @@
 	9.Need a back to game button that will change it to the welcome game panel.
 
 */
-//Object of questions
+//Objects of questions
 
-var questions = {
-	q1: {
+var questions = [
+	{
 		question: "What cat says meow?",
 		answer: "c",
 		a: "Tiger",
@@ -44,15 +46,7 @@ var questions = {
 		c: "Garfield",
 		d: "Cat"
 	},
-	q2: {
-		question: "Whats Drews favorite food?",
-		answer: "a",
-		a: "Ramen",
-		b: "Pizza",
-		c: "Mashed Potatoes",
-		d: "Cat"
-	},
-	q3: {
+	{
 		question: "Who would you choose to marry?",
 		answer: "b",
 		a: "Betty White",
@@ -60,14 +54,25 @@ var questions = {
 		c: "Bill Burr",
 		d: "Cat"
 	}
-};
+];
+var questionsAlt = [
+	{
+		question: "Whats Drews favorite food?",
+		answer: "a",
+		ramen: "a",
+		pizza: "b",
+		mashedPotatoes: "c",
+		cat: "d"
+	}
+]
 
 //Global Vars
-var score = 0;
-var timeLeft = 60;
+var scoreboard;
+var timeLeft;
+
 // Grabbing the elements I need
 var showScoresBtn = document.querySelector("#showscores");
-var countdownTimer = document.getElementById("timer");
+var countDownTimer = document.getElementById("timer");
 var timeContainer = document.querySelector(".time-container")
 
 // this is the welcome view items
@@ -84,6 +89,7 @@ var highScoresList = document.querySelector(".high-scores");
 var finalScoreLabel = document.getElementById("final-score");
 var userInitials = document.getElementById("initials");
 var initialsSubmit = document.getElementById("initials-submit");
+var initialsForm = document.querySelector(".initial-form");
 var playAgain = document.getElementById("play-again");
 var clearLeaderboard = document.getElementById("clear-leaderboard");
 
@@ -134,19 +140,20 @@ function countdown() {
 		// As long as the `timeLeft` is greater than 1
 		if (timeLeft >= 1) {
 			// Set the `textContent` of `timerEl` to show the remaining seconds
-			timerEl.textContent = timeLeft;
+			countDownTimer.textContent = timeLeft;
 			// Decrement `timeLeft` by 1
 			timeLeft--;
+			console.log(timeLeft);
 		} else {
 			// Once `timeLeft` gets to 0, set `timerEl` to an empty string
-			timerEl.textContent = '';
+			countDownTimer.textContent = '-';
 
 			//Need to have something to calculate the score
 			
 			// Use `clearInterval()` to stop the timer
 			clearInterval(timeInterval);
 			// Call the `displayScoreboard()` function
-			introView();
+			highScoresView();
 		}
 	}, 1000);
 };
@@ -157,6 +164,7 @@ function changeHighScoreBtnText (label) {
 function initialSetup() {
 	score = 0;
 	timeLeft = 60;
+	countdownTimer.textContent = timeLeft;
 	
 	if (highScoresWindow.classList.contains("visible") || questionsWindow.classList.contains("visible")) {
 		//Hides the scores view, hides the questions view, shows intro
@@ -169,6 +177,9 @@ function initialSetup() {
 function gameOver() {
 
 };
+function addCorrect() {
+	score = score + 10;
+}
 
 //function to remove 10 when an incorrect answer occurs
 function wrongAnswer() {	
@@ -178,6 +189,9 @@ function wrongAnswer() {
 		timeleft = timeLeft - 10;
 	}
 };
+
+
+
 // ALLL THE VIEWS
 function introView() {
 	console.log("Intro View Showing.");
@@ -201,29 +215,26 @@ function questionsView() {
 
 };
 
-showScoresBtn.addEventListener( "click", function(e) {
-	console.log(e);
-	if (showScoresBtn.textContent === "High Scores") {
-		highScoresView();
-	} else {
-		introView();
+//Lets change the below to event delegation
+var clickContainer = document.querySelector("body");
+
+clickContainer.addEventListener("click", function (event) {
+	var element = event.target;
+
+	//If High Scores is clicked. Same button is used for back
+	if (element === showScoresBtn) {
+		if (showScoresBtn.textContent === "High Scores") {
+			highScoresView();
+		} else {
+			introView();
+		}
+	} else if(element === startBtn) {
+		questionsView();
+		countdown();
+	} else if (element === quitBtn || element === playAgain) {
+		initialSetup();
 	}
-} );
-
-startBtn.addEventListener("click", function(e) {
-	console.log(e);
-	questionsView();
+	
 });
-
-quitBtn.addEventListener("click", function(e) {
-	console.log(e);
-	initialSetup();
-});
-
-playAgain.addEventListener("click", function (e) {
-	console.log(e);
-	initialSetup();
-});
-
 
  

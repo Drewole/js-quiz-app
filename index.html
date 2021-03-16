@@ -19,20 +19,17 @@
           <div class="container">
                <div class="intro visible">
                     <h1>Welcome to a Javascript Timed Quiz</h1>
-                    <p>
-                         During this assessment you will presented with a series of random Javascript questions with <span class="bold">60 seconds</span> to answer as many as you can. Answer correctly and you will be awarded 5 points. Answer incorrectly and <span class="bold">you will lose 10 seconds</span> from the timer. Answer all questions
-                         within the time alotted and you will <span class="bold">earn a bonus 25 points <span class="strikethrough">as well as points in the amount of time remaining on the clock.</span></span>
-                    </p>
+                    <p>During this assessment you will presented with a series of random Javascript questions with <span class="bold">60 seconds</span> to answer as many as you can. Answer correctly and you will be awarded 10 points. Answer incorrectly and <span class="bold">you will lose 10 seconds</span> from the timer.</p>
                     <h2>Good luck! 👍</h2>
                     <p class="center"><button id="start">Start the Party</button></p>
                </div>
                <div class="questions hidden">
                     <h2 id="question-text">This will be the question text.</h2>
                     <ul id="possible-answers">
-                         <li value="a"><span>A: </span>Answer 1</li>
-                         <li value="b"><span>B: </span>Answer 2</li>
-                         <li value="c"><span>C: </span>Answer 3</li>
-                         <li value="d"><span>D: </span>Answer 4</li>
+                         <li data-answer="a"><span>A: </span>Answer 1</li>
+                         <li data-answer="b"><span>B: </span>Answer 2</li>
+                         <li data-answer="c"><span>C: </span>Answer 3</li>
+                         <li data-anwser="d"><span>D: </span>Answer 4</li>
                     </ul>
                     <button class="quit">Quit</button>
                </div>
@@ -41,8 +38,11 @@
                     <ol class="high-scores">
                          <li>High Score 1 <span>56</span></li>
                     </ol>
-                    <p>Good job! Your total score is: <span id="final-score">45</span></p>
-                    <form><label for="name">Enter Your Initials:</label><input name="name" id="initials" type="text" /><br /><button id="initials-submit">Submit</button></form>
+                    <div class="initials-form hidden">
+                         <p>Good job! Your total score is: <span id="final-score">45</span></p>
+                         <form><label for="name">Enter Your Initials:</label><input name="name" id="initials" type="text" /><br /><button id="initials-submit">Submit</button></form>
+                    </div>
+
                     <nav><button id="play-again">Play Again</button><button id="clear-leaderboard">Clear High Scores</button></nav>
                </div>
           </div>
