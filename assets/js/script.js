@@ -187,10 +187,10 @@ function displayQuestion(questionsList) {
 	var rand = questionsList[Math.floor(Math.random() * questionsList.length)];
 
 	//Generate the HTML I want to put in the list section
-	var answersHTML = `<li data-answer="a">${rand.a}</li>
-			<li data-answer="b">${rand.b}</li>
-			<li data-answer="c">${rand.c}</li>
-			<li data-answer="d">${rand.d}</li>
+	var answersHTML = `<li class="choice" data-answer="a">${rand.a}</li>
+			<li class="choice" data-answer="b">${rand.b}</li>
+			<li class="choice" data-answer="c">${rand.c}</li>
+			<li class="choice" data-answer="d">${rand.d}</li>
 			`;
 
 	questionText.textContent = rand.question;
@@ -206,32 +206,42 @@ function displayQuestion(questionsList) {
 		return;
 	}
 }
+// TODO: Finish This
+function winGame() {
+	if (questions.length<= 0 || (timeLeft = 0)) {
+
+	}
+}
+
+// TODO: make function to capture text input.
 
 // This displays the scoreboard entries in the scoreboard view.
 // TODO: This is terrible. Plz fix it.
 // I found parts of this function here. https://stackoverflow.com/questions/1069666/sorting-object-property-by-values
 function displayScoreboard() {
-	var scoreboardSortable = Object.entries(scoreboardParsed);
-	var scoreBoardSorted = [];
-
 	
-	scoreBoardSorted = scoreboardSortable.sort(function (a, b) {
-		return a[1] - b[1];
-	});
-	console.log(scoreBoardSorted);
+	//Sorts the scoreboard to have the highest at the top
+	function sortBoard() {
+		var scoreboardSortable = Object.entries(scoreboardParsed);
+		var scoreBoardSorted = [];
 
-
-	//Reverses the array sort order
-	scoreBoardSorted.reverse();
-
-
+		// Lets sort the board to put the highest score last
+		scoreBoardSorted = scoreboardSortable.sort(function (a, b) {
+			return a[1] - b[1];
+		});
+		return scoreBoardSorted;
+	};
+	//Reverses the array sort order so highest score is first.
+	var scoreBoardSorted = sortBoard().reverse();
+	
+	
 	//Create the HTML Element
 	function createListItem(name) {
 		let liEl = document.createElement('li');
 		liEl.innerHTML = `${name[0]}<span> ${name[1]}</span>`;
 		return liEl;
 	}
-
+	// For each item in the scoreboard array, create a list item and append it to the OL
 	scoreBoardSorted.forEach(function(item){
 		
 		let itemInHTML = createListItem(item);
