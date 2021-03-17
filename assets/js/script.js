@@ -145,7 +145,7 @@ function viewToggle(introView,questionsView,highScoreView) {
 //Timer - this is going to be our countdown
 // Timer that counts down from 60. Yes I copied some of this from one of the activities but I do understand what it does. I also liked the comments for my future reference.
 function countdown() {
-	var timeLeft = 5;
+	var timeLeft = 15;
 	// Use the `setInterval()` method to call a function to be executed every 1000 milliseconds
 	timeInterval = setInterval(function () {
 		// As long as the `timeLeft` is greater than 1
