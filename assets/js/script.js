@@ -26,13 +26,14 @@
 		- This could be a simple if else comparing the correct answer and giving points if correct, removing if not.
 	5. Points system
 		- 10 seconds removed from timer for incorrect answer
-		- 5 points per correct answer
-		- 25 points for completing before timer expires
-		- Bonus points in the same amount as time remaining
+		- 10 points per correct answer
+		- 25 points for completing before timer expires - Maybe
+		- Bonus points in the same amount as time remaining - Maybe
 	6. Local storage save with clear
 	7. A function to update the score like that activity
-	8.Need a See High Scores button that will show the high scores panel.
-	9.Need a back to game button that will change it to the welcome game panel.
+	8.DONE: Need a See High Scores button that will show the high scores panel.
+	9.DONE: Need a back to game button that will change it to the welcome game panel.
+	10. Shuffle the questions before displaying. https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
 
 */
 //Objects of questions
@@ -53,22 +54,30 @@ var questions = [
 		b: "Jennifer Lawrence",
 		c: "Bill Burr",
 		d: "Cat"
-	}
-];
-var questionsAlt = [
+	},
 	{
 		question: "Whats Drews favorite food?",
 		answer: "a",
-		ramen: "a",
-		pizza: "b",
-		mashedPotatoes: "c",
-		cat: "d"
+		a: "ramen",
+		b: "pizza",
+		c: "Mashed Potatoes",
+		d: "cat"
 	}
-]
+];
 
+var scores = {
+		DO: 50,
+		BO: 56,
+		AO: 76,
+		MO: 56
+	}; 
+
+localStorage.setItem("scoreboard", JSON.stringify(scores));
 //Global Vars
-var scoreboard;
+var scoreboardParsed = JSON.parse(localStorage.getItem("scoreboard"));
 var timeLeft;
+var timeInterval;
+
 
 // Grabbing the elements I need
 var showScoresBtn = document.querySelector("#showscores");
@@ -81,6 +90,7 @@ var startBtn = document.getElementById("start");
 //This is the quiz view items
 var questionText = document.getElementById("question-text");
 var possibleAnswersList = document.getElementById("possible-answers");
+var questionAnswers = document.querySelectorAll("#possible-answers li");
 var feedbackText = document.getElementById("feedback");
 var quitBtn = document.querySelector("button.quit");
 
@@ -99,6 +109,7 @@ var introWindow = document.querySelector(".intro");
 var questionsWindow = document.querySelector(".questions");
 var highScoresWindow = document.querySelector(".scoreboard");
 var correctAnswerBox = document.querySelector(".correct");
+
 
 
 //Globals
@@ -136,14 +147,14 @@ function viewToggle(introView,questionsView,highScoreView) {
 function countdown() {
 	var timeLeft = 15;
 	// Use the `setInterval()` method to call a function to be executed every 1000 milliseconds
-	var timeInterval = setInterval(function () {
+	timeInterval = setInterval(function () {
 		// As long as the `timeLeft` is greater than 1
 		if (timeLeft >= 1) {
 			// Set the `textContent` of `timerEl` to show the remaining seconds
 			countDownTimer.textContent = timeLeft;
 			// Decrement `timeLeft` by 1
 			timeLeft--;
-			console.log(timeLeft);
+			// console.log(timeLeft);
 		} else {
 			// Once `timeLeft` gets to 0, set `timerEl` to an empty string
 			countDownTimer.textContent = '-';
@@ -157,14 +168,10 @@ function countdown() {
 		}
 	}, 1000);
 };
-function changeHighScoreBtnText (label) {
-	showScoresBtn.textContent = label;
-}
-
+// Resets some score variable and removes the time from the timer el
 function initialSetup() {
 	score = 0;
-	timeLeft = 60;
-	countdownTimer.textContent = timeLeft;
+	countDownTimer.textContent = "-";
 	
 	if (highScoresWindow.classList.contains("visible") || questionsWindow.classList.contains("visible")) {
 		//Hides the scores view, hides the questions view, shows intro
@@ -173,10 +180,88 @@ function initialSetup() {
 	changeHighScoreBtnText("High Scores");
 
 }
+// TODO: will be attached to a click function of the answers buttons, when I can figure them out.
+function displayQuestion(questionsList) {
+	
+	//Get a random item from the array
+	var rand = questionsList[Math.floor(Math.random() * questionsList.length)];
 
+	//Generate the HTML I want to put in the list section
+	var answersHTML = `<li data-answer="a">${rand.a}</li>
+			<li data-answer="b">${rand.b}</li>
+			<li data-answer="c">${rand.c}</li>
+			<li data-answer="d">${rand.d}</li>
+			`;
+
+	questionText.textContent = rand.question;
+
+	// Insert the HTML I want where I want it for a possible answer.
+	possibleAnswersList.innerHTML = answersHTML;
+
+	// This will remove the item from the array
+	questionsList.splice(questionsList.indexOf(rand), 1);
+	console.log(questionsList);
+	if (questionsList.length < 1) {
+		console.log("we are out of questions!")
+		return;
+	}
+}
+
+// This displays the scoreboard entries in the scoreboard view.
+// TODO: This is terrible. Plz fix it.
+// I found parts of this function here. https://stackoverflow.com/questions/1069666/sorting-object-property-by-values
+function displayScoreboard() {
+	var scoreboardSortable = Object.entries(scoreboardParsed);
+	var scoreBoardSorted = [];
+
+	
+	scoreBoardSorted = scoreboardSortable.sort(function (a, b) {
+		return a[1] - b[1];
+	});
+	console.log(scoreBoardSorted);
+
+
+	//Reverses the array sort order
+	scoreBoardSorted.reverse();
+
+
+	//Create the HTML Element
+	function createListItem(name) {
+		let liEl = document.createElement('li');
+		liEl.innerHTML = `${name[0]}<span> ${name[1]}</span>`;
+		return liEl;
+	}
+
+	scoreBoardSorted.forEach(function(item){
+		
+		let itemInHTML = createListItem(item);
+		console.log(itemInHTML)
+		highScoresList.appendChild(itemInHTML);
+		
+	});
+
+
+
+}
+displayScoreboard();
+
+
+
+/////Game related functions
+//TODO: this isn't working correctly yet
+function clearScoreboard() {
+	var clearScoreboard = {};
+	localStorage.setItem("scoreboard", JSON.stringify(clearScoreboard))
+}
+
+//Kills the time interval - returns remaining time
 function gameOver() {
-
+	var remainingTime = timeLeft;
+	console.log(remainingTime);
+	clearInterval(timeInterval);
+	return remainingTime;
 };
+// Add Points for correct answer
 function addCorrect() {
 	score = score + 10;
 }
@@ -193,6 +278,11 @@ function wrongAnswer() {
 
 
 // ALLL THE VIEWS
+function changeHighScoreBtnText(label) {
+	showScoresBtn.textContent = label;
+}
+
+
 function introView() {
 	console.log("Intro View Showing.");
 	viewToggle("visible", "hidden", "hidden");
@@ -233,7 +323,21 @@ clickContainer.addEventListener("click", function (event) {
 		countdown();
 	} else if (element === quitBtn || element === playAgain) {
 		initialSetup();
+		clearInterval(timeInterval);
 	}
+
+	//clear scoreboard
+	if (element === clearLeaderboard) {
+		clearScoreboard();
+	}
+
+	// //Check if the answer selected is correct - Need to make this an event bubble and catch it on the parent
+	// if(element === possibleAnswersList.querySelector('li')){
+	// 	console.log(`This is the possible answers return.
+	// 	${possibleAnswersList}`)
+	// 	var questionAnswer = this.dataset.answer;
+	// 	console.log(questionAnswer)
+	// }
 	
 });
 

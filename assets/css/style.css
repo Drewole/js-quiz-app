@@ -17,6 +17,7 @@
      display: none;
 }
 body {
+     padding-top: 100px;
      font-size: 16px;
      /* This will smooth out the text on the page */
      text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
@@ -46,6 +47,9 @@ button {
 header {
      background-color: var(--secondary-color);
      color: var(--white);
+     position: fixed;
+     top: 0;
+     width: 100vw;
      display: flex;
      justify-content: space-between;
      /* got this lovely box shadow from this site https://brumm.af/shadows */
@@ -81,7 +85,7 @@ header div:hover {
 }
 .container {
      max-width: 800px;
-     margin: 100px auto;
+     margin: 0 auto 100px;
      padding: 60px;
      border-radius: 12px;
      background: #fff;
@@ -148,7 +152,7 @@ h1 {
 }
 .questions li {
      line-height: 1.9em;
-     display: inline-block;
+     display: table;
      padding: 10px 30px 10px 30px;
      background-color: var(--main-color);
      color: var(--white);
@@ -162,12 +166,15 @@ h1 {
      background-color: var(--secondary-color);
      padding-right: 50px;
 }
-.questions li:hover span {
-     color: var(--white);
-}
-.questions li span {
+
+.questions li:before {
+     content: attr(data-answer) ":";
      color: var(--secondary-color);
-     padding-right: 15px;
+     padding-right: 20px;
+     text-transform: uppercase;
+}
+.questions li:hover:before {
+     color: var(--white);
 }
 .questions button.quit {
      font-size: 0.8rem;
@@ -193,8 +200,14 @@ input[type="text"] {
      margin-left: 10px;
 }
 ol {
-     margin-bottom: 40px;
+     margin: 0 auto 40px;
+     max-width: 95%;
 }
+@media only screen and (min-width: 762px) {
+     ol {
+          max-width: 65%;
+     }
+} /* end of media query */
 ol li {
      background-color: rgb(245, 245, 245);
      padding: 20px;
@@ -203,7 +216,7 @@ ol li {
 ol li:nth-child(odd) {
      background-color: rgb(238, 238, 238);
 }
-.scoreboard {
+.scoreboard h2 {
      text-align: center;
 }
 .scoreboard p {

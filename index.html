@@ -14,7 +14,7 @@
      <body>
           <header>
                <div id="showscores">High Scores</div>
-               <p clas="time-container">Time Left: <span id="timer">20</span></p>
+               <p clas="time-container">Time Left: <span id="timer">-</span></p>
           </header>
           <div class="container">
                <div class="intro visible">
@@ -26,18 +26,16 @@
                <div class="questions hidden">
                     <h2 id="question-text">This will be the question text.</h2>
                     <ul id="possible-answers">
-                         <li data-answer="a"><span>A: </span>Answer 1</li>
-                         <li data-answer="b"><span>B: </span>Answer 2</li>
-                         <li data-answer="c"><span>C: </span>Answer 3</li>
-                         <li data-anwser="d"><span>D: </span>Answer 4</li>
+                         <li data-answer="a">Question 1</li>
+                         <li data-answer="b">Question 2</li>
+                         <li data-answer="c">Question 3</li>
+                         <li data-answer="d">Question 4</li>
                     </ul>
                     <button class="quit">Quit</button>
                </div>
                <div class="scoreboard hidden">
                     <h2>High Scores</h2>
-                    <ol class="high-scores">
-                         <li>High Score 1 <span>56</span></li>
-                    </ol>
+                    <ol class="high-scores"></ol>
                     <div class="initials-form hidden">
                          <p>Good job! Your total score is: <span id="final-score">45</span></p>
                          <form><label for="name">Enter Your Initials:</label><input name="name" id="initials" type="text" /><br /><button id="initials-submit">Submit</button></form>
