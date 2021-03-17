@@ -99,7 +99,7 @@ var highScoresList = document.querySelector(".high-scores");
 var finalScoreLabel = document.getElementById("final-score");
 var userInitials = document.getElementById("initials");
 var initialsSubmit = document.getElementById("initials-submit");
-var initialsForm = document.querySelector(".initial-form");
+var initialsForm = document.querySelector(".initials-form");
 var playAgain = document.getElementById("play-again");
 var clearLeaderboard = document.getElementById("clear-leaderboard");
 
@@ -145,7 +145,7 @@ function viewToggle(introView,questionsView,highScoreView) {
 //Timer - this is going to be our countdown
 // Timer that counts down from 60. Yes I copied some of this from one of the activities but I do understand what it does. I also liked the comments for my future reference.
 function countdown() {
-	var timeLeft = 15;
+	var timeLeft = 5;
 	// Use the `setInterval()` method to call a function to be executed every 1000 milliseconds
 	timeInterval = setInterval(function () {
 		// As long as the `timeLeft` is greater than 1
@@ -165,6 +165,7 @@ function countdown() {
 			clearInterval(timeInterval);
 			// Call the `displayScoreboard()` function
 			highScoresView();
+			toggleScoreInput();
 		}
 	}, 1000);
 };
@@ -254,8 +255,16 @@ function displayScoreboard() {
 
 }
 displayScoreboard();
+//Just shows the score form after a round is played.
+function toggleScoreInput() {
 
-
+	if (initialsForm.classList.contains("hidden")) {
+		initialsForm.classList.remove("hidden");
+	} else {
+		initialsForm.classList.add("hidden");
+	}
+	 
+}
 
 /////Game related functions
 //TODO: this isn't working correctly yet
@@ -331,6 +340,7 @@ clickContainer.addEventListener("click", function (event) {
 	} else if(element === startBtn) {
 		questionsView();
 		countdown();
+		displayQuestion(questions);
 	} else if (element === quitBtn || element === playAgain) {
 		initialSetup();
 		clearInterval(timeInterval);
@@ -341,14 +351,17 @@ clickContainer.addEventListener("click", function (event) {
 		clearScoreboard();
 	}
 
-	// //Check if the answer selected is correct - Need to make this an event bubble and catch it on the parent
-	// if(element === possibleAnswersList.querySelector('li')){
-	// 	console.log(`This is the possible answers return.
-	// 	${possibleAnswersList}`)
-	// 	var questionAnswer = this.dataset.answer;
-	// 	console.log(questionAnswer)
-	// }
+	//Check if the answer selected is correct - Need to make this an event bubble and catch it on the parent
 	
 });
 
- 
+const element1 = document.querySelector('.choice')
+
+
+highScoresList.addEventListener('click', function(event) {
+	if (event.target !== element1) {
+		return
+	}
+	//handle click
+	console.log(event.target)
+});

@@ -194,9 +194,11 @@ h1 {
 }
 input[type="text"] {
      border: 2px solid rgb(225, 225, 225);
-     line-height: 3.5em;
+     line-height: 2em;
      border-radius: 6px;
-     min-width: 30%;
+     padding-left: 25px;
+     font-size: 1.3rem;
+     max-width: 50px;
      margin-left: 10px;
 }
 ol {
@@ -226,8 +228,13 @@ ol li span {
      font-size: 1.6rem;
      color: var(--main-color);
      margin-bottom: 25px;
+     text-align: center;
 }
-
+.scoreboard form {
+     margin: 20px auto;
+     max-width: 70%;
+     text-align: center;
+}
 .scoreboard form button {
      background-color: var(--main-color);
      margin-top: 25px;

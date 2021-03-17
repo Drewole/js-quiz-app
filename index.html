@@ -26,10 +26,10 @@
                <div class="questions hidden">
                     <h2 id="question-text">This will be the question text.</h2>
                     <ul id="possible-answers">
-                         <li class="choice" data-answer="a">Question 1</li>
-                         <li class="choice" data-answer="b">Question 2</li>
-                         <li class="choice" data-answer="c">Question 3</li>
-                         <li class="choice" data-answer="d">Question 4</li>
+                         <li class="choice" data-answer="a"></li>
+                         <li class="choice" data-answer="b"></li>
+                         <li class="choice" data-answer="c"></li>
+                         <li class="choice" data-answer="d"></li>
                     </ul>
                     <button class="quit">Quit</button>
                </div>
@@ -38,7 +38,7 @@
                     <ol class="high-scores"></ol>
                     <div class="initials-form hidden">
                          <p>Good job! Your total score is: <span id="final-score">45</span></p>
-                         <form><label for="name">Enter Your Initials:</label><input name="name" id="initials" type="text" /><br /><button id="initials-submit">Submit</button></form>
+                         <form><label for="name">Enter Your Initials:</label><input name="name" maxlength="2" id="initials" type="text" /><br /><button id="initials-submit">Submit</button></form>
                     </div>
 
                     <nav><button id="play-again">Play Again</button><button id="clear-leaderboard">Clear High Scores</button></nav>
