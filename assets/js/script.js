@@ -36,8 +36,9 @@
 	10. Shuffle the questions before displaying. https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
 
 */
-//Objects of questions
 
+//Objects of questions
+console.log(Views)
 var questions = [
 	{
 		question: "What cat says meow?",
@@ -65,87 +66,116 @@ var questions = [
 	}
 ];
 
-var scores = {
-		DO: 50,
-		BO: 56,
-		AO: 76,
-		MO: 56
-	}; 
+// var scores = {
+// 		DO: 50,
+// 		BO: 56,
+// 		AO: 76,
+// 		MO: 56
+// 	}; 
 
-localStorage.setItem("scoreboard", JSON.stringify(scores));
+// localStorage.setItem("scoreboard", JSON.stringify(scores));
 //Global Vars
 var scoreboardParsed = JSON.parse(localStorage.getItem("scoreboard"));
 var timeLeft;
 var timeInterval;
 
-
 // Grabbing the elements I need
-var showScoresBtn = document.querySelector("#showscores");
-var countDownTimer = document.getElementById("timer");
-var timeContainer = document.querySelector(".time-container")
+const showScoresBtn = document.querySelector("#showscores");
+const countDownTimer = document.getElementById("timer");
+const timeContainer = document.querySelector(".time-container")
 
 // this is the welcome view items
 var startBtn = document.getElementById("start");
 
 //This is the quiz view items
-var questionText = document.getElementById("question-text");
-var possibleAnswersList = document.getElementById("possible-answers");
-var questionAnswers = document.querySelectorAll("#possible-answers li");
-var feedbackText = document.getElementById("feedback");
-var quitBtn = document.querySelector("button.quit");
+const questionText = document.getElementById("question-text");
+const possibleAnswersList = document.getElementById("possible-answers");
+let questionAnswers = document.querySelectorAll("#possible-answers li");
+const feedbackText = document.getElementById("feedback");
+let quitBtn = document.querySelector("button.quit");
 
 // This is the high scores page
-var highScoresList = document.querySelector(".high-scores");
-var finalScoreLabel = document.getElementById("final-score");
-var userInitials = document.getElementById("initials");
-var initialsSubmit = document.getElementById("initials-submit");
-var initialsForm = document.querySelector(".initials-form");
-var playAgain = document.getElementById("play-again");
-var clearLeaderboard = document.getElementById("clear-leaderboard");
-
-
-// views
-var introWindow = document.querySelector(".intro");
-var questionsWindow = document.querySelector(".questions");
-var highScoresWindow = document.querySelector(".scoreboard");
-var correctAnswerBox = document.querySelector(".correct");
-
-
+const highScoresList = document.querySelector(".high-scores");
+const finalScoreLabel = document.getElementById("final-score");
+const userInitials = document.getElementById("initials");
+const initialsSubmit = document.getElementById("initials-submit");
+const initialsForm = document.querySelector(".initials-form");
+const playAgain = document.getElementById("play-again");
+const clearLeaderboard = document.getElementById("clear-leaderboard");
 
 //Globals
 
-function viewToggle(introView,questionsView,highScoreView) {
-	if (introView === "visible") {
-		introWindow.classList.remove("hidden");
-		introWindow.classList.add("visible");
-	} else {
-		introWindow.classList.remove("visible");
-		introWindow.classList.add("hidden");
-	}
+//Views
+const frontPageViewEl = document.querySelector(".intro");
+const highScoresViewEl = document.querySelector(".scoreboard");
+const gameViewEl = document.querySelector(".questions");
+
+function initialSetup() {
+	if (frontPageViewEl.classList.contains("visible") || gameViewEl.classList.contains("visible")) {
 	
-	if (questionsView === "visible") {
-		questionsWindow.classList.remove("hidden");
-		questionsWindow.classList.add("visible");
+		 frontPageView();
+	}
+
+}
+
+function viewToggle(frontPageViewEl, highScoresViewEl, gameViewEl) {
+
+	if (frontPageView === "visible") {
+		frontPageViewEl.classList.add("visible");
+		frontPageViewEl.classList.remove("hidden");
 	} else {
-		questionsWindow.classList.remove("visible");
-		questionsWindow.classList.add("hidden");
+		frontPageViewEl.classList.remove("visible");
+		frontPageViewEl.classList.add("hidden");
 	};
 
-	if (highScoreView === "visible") {
-		highScoresWindow.classList.remove("hidden");
-		highScoresWindow.classList.add("visible");
+	if (highScoresView === "visible") {
+		highScoresViewEl.classList.add("visible");
+		highScoresViewEl.classList.remove("hidden");
 	} else {
-		highScoresWindow.classList.remove("visible");
-		highScoresWindow.classList.add("hidden");
-	}
-	
+		highScoresViewEl.classList.remove("visible");
+		highScoresViewEl.classList.add("hidden");
+	};
+
+	if (gameView === "visible") {
+		gameViewEl.classList.remove("hidden");
+		gameViewEl.classList.add("visible");
+	} else {
+		gameViewEl.classList.remove("visible");
+		gameViewEl.classList.add("hidden");
+	};
+
 };
 
+function frontPageView() { 
+	//Shows the welcome view, hides the favorites view, hides find friends                   
+	viewToggle("visible", "hidden", "hidden");
+};
+
+function highScoresView() {
+	//Shows the find friend view, hides the favorites view, hides welcome
+	viewToggle("hidden", "visible", "hidden");
+};
+function gameView() {
+	//Hides the welcome view, hides the find friend view, shows favorites
+	viewToggle("hidden", "hidden", "visible");
+
+};
+
+const clickContainer = document.querySelector("body");
+clickContainer.addEventListener("click", function (event) {
+	var elementClicked = event.target;
+	if (elementClicked.classList.contains("front-page-view")) {
+		frontPageView()
+	} else if (elementClicked.classList.contains("high-scores-view")) {
+		highScoresView()
+	} else if(elementClicked.classList.contains("game-view")) {
+		gameView()
+	}
+})
 
 //Timer - this is going to be our countdown
-// Timer that counts down from 60. Yes I copied some of this from one of the activities but I do understand what it does. I also liked the comments for my future reference.
 function countdown() {
-	var timeLeft = 15;
+	let timeLeft = 15;
 	// Use the `setInterval()` method to call a function to be executed every 1000 milliseconds
 	timeInterval = setInterval(function () {
 		// As long as the `timeLeft` is greater than 1
@@ -210,7 +240,7 @@ function displayQuestion(questionsList) {
 // TODO: Finish This
 function winGame() {
 	if (questions.length<= 0 || (timeLeft = 0)) {
-
+		highScoresView();
 	}
 }
 
@@ -218,7 +248,7 @@ function winGame() {
 
 // This displays the scoreboard entries in the scoreboard view.
 // TODO: This is terrible. Plz fix it.
-// I found parts of this function here. https://stackoverflow.com/questions/1069666/sorting-object-property-by-values
+
 function displayScoreboard() {
 	
 	//Sorts the scoreboard to have the highest at the top
@@ -235,7 +265,6 @@ function displayScoreboard() {
 	//Reverses the array sort order so highest score is first.
 	var scoreBoardSorted = sortBoard().reverse();
 	
-	
 	//Create the HTML Element
 	function createListItem(name) {
 		let liEl = document.createElement('li');
@@ -250,8 +279,6 @@ function displayScoreboard() {
 		highScoresList.appendChild(itemInHTML);
 		
 	});
-
-
 
 }
 displayScoreboard();
@@ -271,6 +298,7 @@ function toggleScoreInput() {
 function clearScoreboard() {
 	var clearScoreboard = {};
 	localStorage.setItem("scoreboard", JSON.stringify(clearScoreboard))
+	displayScoreboard()
 }
 
 //Kills the time interval - returns remaining time
@@ -294,13 +322,10 @@ function wrongAnswer() {
 	}
 };
 
-
-
 // ALLL THE VIEWS
 function changeHighScoreBtnText(label) {
 	showScoresBtn.textContent = label;
 }
-
 
 function introView() {
 	console.log("Intro View Showing.");
@@ -356,7 +381,6 @@ clickContainer.addEventListener("click", function (event) {
 });
 
 const element1 = document.querySelector('.choice')
-
 
 highScoresList.addEventListener('click', function(event) {
 	if (event.target !== element1) {
