@@ -1,4 +1,4 @@
-const Questions = [
+const questions = [
 {
     question: " Why do JavaScript and Java have similar name?",
     a: " JavaScript is a stripped-down version of Java",
@@ -64,10 +64,10 @@ const Questions = [
     answer: "a",
     },{
     question: " ______ tag is an extension to HTML that can enclose any number of JavaScript statements.",
-    a: " &lt;SCRIPT&gt;",
-    b: " &lt;BODY&gt;",
-    c: " &lt;HEAD&gt;",
-    d: " &lt;TITLE&gt;",
+    a: " <SCRIPT></SCRIPT>",
+    b: " <BODY>",
+    c: " <HEAD>",
+    d: " <TITLE>",
     answer: "a",
     },{
     question: " How does JavaScript store dates in a date object?",
@@ -92,23 +92,23 @@ const Questions = [
     answer: "c",
     },{
     question: " Which of the following way can be used to indicate the LANGUAGE attribute?",
-    a: " &lt;LANGUAGE='JavaScriptVersion'&gt;",
-    b: " &lt;SCRIPT LANGUAGE='JavaScriptVersion'&gt;",
-    c: " &lt;SCRIPT LANGUAGE='JavaScriptVersion'&gt;&nbsp;&nbsp;&nbsp; JavaScript statements…&lt;/SCRIPT&gt;",
-    d: " &lt;SCRIPT LANGUAGE='JavaScriptVersion'!&gt;&nbsp;&nbsp;&nbsp; JavaScript statements…&lt;/SCRIPT&gt;",
+    a: " <LANGUAGE='JavaScriptVersion'>",
+    b: " <SCRIPT LANGUAGE='JavaScriptVersion'>",
+    c: " <SCRIPT LANGUAGE='JavaScriptVersion'>&nbsp;&nbsp;&nbsp; JavaScript statements…</SCRIPT>",
+    d: " <SCRIPT LANGUAGE='JavaScriptVersion'!>&nbsp;&nbsp;&nbsp; JavaScript statements…</SCRIPT>",
     answer: "c",
     },{
     question: " Inside which HTML element do we put the JavaScript?",
-    a: " &lt;js&gt;",
-    b: " &lt;scripting&gt;",
-    c: " &lt;script&gt;",
-    d: " &lt;javascript&gt;",
+    a: " <js>",
+    b: " <scripting>",
+    c: " <script>",
+    d: " <javascript>",
     answer: "c",
     },{
     question: " What is the correct syntax for referring to an external script called 'abc.js'?",
-    a: " &lt;script href='abc.js'&gt;",
-    b: " &lt;script name='abc.js'&gt;",
-    c: " &lt;script src='abc.js'&gt;",
+    a: " <script href='abc.js'>",
+    b: " <script name='abc.js'>",
+    c: " <script src='abc.js'>",
     d: " None of the above",
     answer: "c",
     },{
@@ -133,7 +133,7 @@ const Questions = [
     d: " var txt = new Array='tim','kim','jim'",
     answer: "c",
     },{
-    question: " What does the &lt;noscript&gt; tag do?",
+    question: " What does the <noscript> tag do?",
     a: " Enclose text to be displayed by non-JavaScript browsers.",
     b: " Prevents scripts on the page from executing.",
     c: " Describes certain low-budget movies.",
@@ -189,7 +189,7 @@ const Questions = [
     d: " Efloat",
     answer: "a",
     },{
-    question: " Which of the following event fires when the form element loses the focus: ' &lt;button&gt;', '&lt;input&gt;', '&lt;label&gt;', '&lt;select&gt;', '&lt;textarea&gt;'?",
+    question: " Which of the following event fires when the form element loses the focus: ' <button>', '<input>', '<label>', '<select>', '<textarea>'?",
     a: " onfocus",
     b: " onblur",
     c: " onclick",
@@ -220,7 +220,7 @@ const Questions = [
     question: " Which of the following is the structure of an if statement?",
     a: " if (conditional expression is true) thenexecute this codeend if",
     b: " if (conditional expression is true)execute this codeend if",
-    c: " if (conditional expression is true)&nbsp;&nbsp; {then execute this code&gt;-&gt;}",
+    c: " if (conditional expression is true)&nbsp;&nbsp; {then execute this code>->}",
     d: " if (conditional expression is true) then {execute this code}",
     answer: "c",
     },{
@@ -246,9 +246,9 @@ const Questions = [
     answer: "a",
     },{
     question: " Which tag(s) can handle mouse events in Netscape?",
-    a: " &lt;IMG&gt;",
-    b: " &lt;A&gt;",
-    c: " &lt;BR&gt;",
+    a: " <IMG>",
+    b: " <A>",
+    c: " <BR>",
     d: " None of the above",
     answer: "b",
     },{
@@ -343,17 +343,6 @@ const Questions = [
     d: " Close()",
     answer: "d",
     },{
-    question: "Is it possible to nest functions in JavaScript?",
-    a: "True",
-    b: "False",
-    answer: "a",
-    },{
-    question: "Scripting languages are",
-    a: "High Level Programming language",
-    b: "Assembly Level programming language",
-    c: "Machine level programming language",
-    answer: "a",
-    },{
     question: "Which best explains getSelection()?",
     a: "Returns the VALUE of a selected OPTION.",
     b: "Returns document.URL of the window in focus.",
@@ -374,12 +363,5 @@ const Questions = [
     c: "It is a variable which contains value",
     d: "None of the above",
     answer: "a",
-    },{
-    question: "In JavaScript, Window.prompt() method return true or false value?",
-    a: "False",
-    b: "True",
-    answer: "a",
     }
 ]
-
-module.exports = Questions;

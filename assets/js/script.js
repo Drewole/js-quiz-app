@@ -396,21 +396,25 @@ const questions = [
     answer: "a",
     }
 ]
-// var scores = {
-// 		DO: 50,
-// 		BO: 56,
-// 		AO: 76,
-// 		MO: 56
-// 	}; 
+// var scores = [
+// 		{name: "AO", score: 110},
+// 		{name: "BO", score: 40},
+// 		{name: "JR", score: 50},
+// 		{name: "MR", score: 40},
+// 		{name: "ZO", score: 140},
+// 		{name: "DO", score: 80}
+
+// ]; 
 
 // localStorage.setItem("scoreboard", JSON.stringify(scores));
 //Global Vars
-localStorage.setItem("questions", JSON.stringify(questions));
-var theQuestions = JSON.parse(localStorage.getItem("questions"));
+
+var theQuestions = questions;
 var scoreboardParsed = JSON.parse(localStorage.getItem("scoreboard"));
 var timeLeft;
 var timeInterval;
 var rand;
+var finalScore;
 
 // Grabbing the elements I need
 const showScoresBtn = document.querySelector("#showscores");
@@ -445,7 +449,7 @@ const gameViewEl = document.querySelector(".questions");
 
 //Timer - this is going to be our countdown
 function countdown() {
-	let timeLeft = 10;
+	let timeLeft = 30;
 	// Use the `setInterval()` method to call a function to be executed every 1000 milliseconds
 	timeInterval = setInterval(function () {
 		// As long as the `timeLeft` is greater than 1
@@ -522,31 +526,21 @@ function winGame() {
 
 function displayScoreboard() {
 	
-	//Sorts the scoreboard to have the highest at the top
-	function sortBoard() {
-		var scoreboardSortable = Object.entries(scoreboardParsed);
-		var scoreBoardSorted = [];
-
-		// Lets sort the board to put the highest score last
-		scoreBoardSorted = scoreboardSortable.sort(function (a, b) {
-			return a[1] - b[1];
+	scoreBoardSorted = scoreboardParsed.sort(function (a, b) {
+			return b.score - a.score;
 		});
-		return scoreBoardSorted;
-	};
-	//Reverses the array sort order so highest score is first.
-	var scoreBoardSorted = sortBoard().reverse();
 	
 	//Create the HTML Element
 	function createListItem(name) {
 		let liEl = document.createElement('li');
-		liEl.innerHTML = `${name[0]}<span> ${name[1]}</span>`;
+		liEl.innerHTML = `${name.name}<span> ${name.score}</span>`;
 		return liEl;
 	}
 	// For each item in the scoreboard array, create a list item and append it to the OL
 	scoreBoardSorted.forEach(function(item){
 		
 		let itemInHTML = createListItem(item);
-		console.log(itemInHTML)
+
 		highScoresList.appendChild(itemInHTML);
 		
 	});
@@ -630,7 +624,6 @@ function frontPageView() {
 	changeHighScoreBtnText("High Scores");                  
 	viewToggle("visible", "hidden", "hidden");
 };
-
 function highScoresView() {
 	//Shows the find friend view, hides the favorites view, hides welcome
 	
@@ -656,7 +649,7 @@ clickContainer.addEventListener("click", function (event) {
 	} else if(element === startBtn) {
 		gameView();
 		countdown();
-		displayQuestion(questions);
+		displayQuestion(theQuestions);
 	} else if (element === quitBtn || element === playAgain) {
 		initialSetup();
 		clearInterval(timeInterval);
@@ -676,20 +669,16 @@ clickContainer.addEventListener("click", function (event) {
 	}
 
 	//Check if the answer selected is correct - Need to make this an event bubble and catch it on the parent
-	if (element.classList.contains("choice")) {
-		let chosenAnswer = element.dataset.answer;
-		console.log(chosenAnswer, "ChosenAnswer Var")
-		console.log(rand.answer, "Question answer")
-	}
 	
-});
+        if (element.classList.contains("choice")) {
+            let chosenAnswer = element.dataset.answer;
+            let correctAnswer = rand.answer;
+            console.log(chosenAnswer, "Chosen Answer")
+            console.log(correctAnswer, "Correct answer")
 
-const element1 = document.querySelector('.choice')
+            if (chosenAnswer === correctAnswer) {
+                console.log("You have chosen wisely!!!!")
+            }
+        }
 
-highScoresList.addEventListener('click', function(event) {
-	if (event.target !== element1) {
-		return
-	}
-	//handle click
-	console.log(event.target)
 });

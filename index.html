@@ -17,13 +17,13 @@
                <p class="time-container">Time Left: <span id="timer">-</span></p>
           </header>
           <div class="container">
-               <div class="intro visible">
+               <section class="intro visible">
                     <h1>Welcome to a Javascript Timed Quiz</h1>
                     <p>During this assessment you will presented with a series of random Javascript questions with <span class="bold">60 seconds</span> to answer as many as you can. Answer correctly and you will be awarded 10 points. Answer incorrectly and <span class="bold">you will lose 10 seconds</span> from the timer.</p>
                     <h2>Good luck! 👍</h2>
                     <p class="center"><button id="start">Start the Party</button></p>
-               </div>
-               <div class="questions hidden">
+               </section>
+               <section class="questions hidden">
                     <h2 id="question-text">This will be the question text.</h2>
                     <ul id="possible-answers">
                          <li class="choice" data-answer="a"></li>
@@ -32,8 +32,8 @@
                          <li class="choice" data-answer="d"></li>
                     </ul>
                     <button class="quit front-page-view">Quit</button>
-               </div>
-               <div class="scoreboard hidden">
+               </section>
+               <section class="scoreboard hidden">
                     <h2>High Scores</h2>
                     <ol class="high-scores"></ol>
                     <div class="initials-form hidden">
@@ -42,7 +42,13 @@
                     </div>
 
                     <nav><button class="home-page-view" id="play-again">Play Again</button><button id="clear-leaderboard">Clear High Scores</button></nav>
-               </div>
+               </section>
+               <section class="feedback">
+                    <div class="answer-feedback">
+
+                    </div>
+               </section>
+
           </div>
           <!-- <div class="correct">
                <p id="feedback">CORRECT! +5 points.</p>
