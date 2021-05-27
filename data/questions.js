@@ -1,11 +1,11 @@
 const Questions = [
 {
-    question: " Why so JavaScript and Java have similar name?",
+    question: " Why do JavaScript and Java have similar name?",
     a: " JavaScript is a stripped-down version of Java",
     b: " JavaScript's syntax is loosely based on Java's",
     c: " They both originated on the island of Java",
     d: " None of the above",
-    answer: " B",
+    answer: "b",
     },{
     question: " When a user views a page containing a JavaScript program, which machine actually executes the script?",
     a: " The User's machine running a Web browser",
@@ -19,7 +19,7 @@ const Questions = [
     b: " Navigator",
     c: " LiveWire",
     d: " Native",
-    answer: " B",
+    answer: "b",
     },{
     question: " __________ JavaScript is also called server-side JavaScript.",
     a: " Microsoft",
@@ -117,7 +117,7 @@ const Questions = [
     b: " Client-side image maps",
     c: " Server-side image maps and Client-side image maps",
     d: " None of the above",
-    answer: "B",
+    answer: "b",
     },{
     question: " Netscape and IE?",
     a: " navigator.appCodeName",
@@ -131,7 +131,7 @@ const Questions = [
     b: " var txt = new Array: '1=('tim')2=('kim')3=('jim')",
     c: " var txt = new Array('tim','kim','jim')",
     d: " var txt = new Array='tim','kim','jim'",
-    answer: "C",
+    answer: "c",
     },{
     question: " What does the &lt;noscript&gt; tag do?",
     a: " Enclose text to be displayed by non-JavaScript browsers.",
@@ -145,7 +145,7 @@ const Questions = [
     b: " para1.value='New Text';",
     c: " para1.firstChild.nodeValue= 'New Text';",
     d: " para1.nodeValue='New Text';",
-    answer: "B",
+    answer: "b",
     },{
     question: " JavaScript entities start with _______ and end with _________.",
     a: " Semicolon, colon",
@@ -166,21 +166,21 @@ const Questions = [
     b: " Function",
     c: " File",
     d: " Date",
-    answer: "C",
+    answer: "c",
     },{
     question: " Choose the client-side JavaScript object?",
     a: " Database",
     b: " Cursor",
     c: " Client",
     d: " FileUpLoad",
-    answer: " D",
+    answer: "d",
     },{
     question: " Which of the following is not considered a JavaScript operator?",
     a: " new",
     b: " this",
     c: " delete",
     d: " typeof",
-    answer: "B",
+    answer: "b",
     },{
     question: " ______method evaluates a string of JavaScript code in the context of the specified object.",
     a: " Eval",
@@ -194,14 +194,14 @@ const Questions = [
     b: " onblur",
     c: " onclick",
     d: " ondblclick",
-    answer: "B",
+    answer: "b",
     },{
     question: " The syntax of Eval is ________________",
     a: " [objectName.]eval(numeriC.",
     b: " [objectName.]eval(string)",
     c: " [EvalName.]eval(string)",
     d: " [EvalName.]eval(numeriC.",
-    answer: " B",
+    answer: "b",
     },{
     question: " JavaScript is interpreted by _________",
     a: " Client",
@@ -215,7 +215,7 @@ const Questions = [
     b: " If",
     c: " Switch",
     d: " For",
-    answer: "B",
+    answer: "b",
     },{
     question: " Which of the following is the structure of an if statement?",
     a: " if (conditional expression is true) thenexecute this codeend if",
@@ -250,7 +250,7 @@ const Questions = [
     b: " &lt;A&gt;",
     c: " &lt;BR&gt;",
     d: " None of the above",
-    answer: "B",
+    answer: "b",
     },{
     question: " ____________ is the tainted property of a window object.",
     a: " Pathname",
@@ -278,14 +278,14 @@ const Questions = [
     b: " JSObject",
     c: " JavaObject",
     d: " Jobject",
-    answer: " B",
+    answer: "b",
     },{
     question: " _______ class provides an interface for invoking JavaScript methods and examining JavaScript properties.",
     a: " ScriptObject",
     b: " JSObject",
     c: " JavaObject",
     d: " Jobject",
-    answer: "B",
+    answer: "b",
     },{
     question: " _________ is a wrapped Java array, accessed from within JavaScript code.",
     a: " JavaArray",
@@ -299,21 +299,21 @@ const Questions = [
     b: " JavaClass",
     c: " JavaObject",
     d: " JavaPackage",
-    answer: "B",
+    answer: "b",
     },{
     question: " The JavaScript exception is available to the Java code as an instance of __________",
     a: " netscape.javascript.JSObject",
     b: " netscape.javascript.JSException",
     c: " netscape.plugin.JSException",
     d: " None of the above",
-    answer: " B",
+    answer: "b",
     },{
     question: "To automatically open the console when a JavaScript error occurs which of the following is added to prefs.js?",
     a: " user_pref('javascript.console.open_on_error', false);",
     b: " user_pref('javascript.console.open_error', true);",
     c: " user_pref('javascript.console.open_error', false);",
     d: "&nbsp; user_pref('javascript.console.open_on_error', true);",
-    answer: " D",
+    answer: "d",
     },{
     question: " To open a dialog box each time an error occurs, which of the following is added to prefs.js?",
     a: " user_pref('javascript.classic.error_alerts', true);",
@@ -341,7 +341,7 @@ const Questions = [
     b: " Close(object)",
     c: " Close(val)",
     d: " Close()",
-    answer: " D",
+    answer: "d",
     },{
     question: "Is it possible to nest functions in JavaScript?",
     a: "True",
@@ -366,7 +366,7 @@ const Questions = [
     b: "Cursor",
     c: "Client",
     d: "FileUpLoad",
-    answer: "D",
+    answer: "d",
     },{
     question: "What is mean by 'this' keyword in javascript?",
     a: "It refers to current object",
