@@ -1,15 +1,4 @@
-// Acceptance Criteria
-// GIVEN I am taking a code quiz
-// WHEN I click the start button
-// THEN a timer starts and I am presented with a question
-// WHEN I answer a question
-// THEN I am presented with another question
-// WHEN I answer a question incorrectly
-// THEN time is subtracted from the clock
-// WHEN all questions are answered or the timer reaches 0
-// THEN the game is over
-// WHEN the game is over
-// THEN I can save my initials and my score
+
 
 // Additional features as a maybe
 // Answer all questions within the time alotted and you will < span class="bold" > earn a bonus 25 points < span class="strikethrough" > as well as points in the amount of time remaining on the clock.</ ></span >
@@ -38,33 +27,34 @@
 */
 
 //Objects of questions
-console.log(Views)
-var questions = [
-	{
-		question: "What cat says meow?",
-		answer: "c",
-		a: "Tiger",
-		b: "Bear",
-		c: "Garfield",
-		d: "Cat"
-	},
-	{
-		question: "Who would you choose to marry?",
-		answer: "b",
-		a: "Betty White",
-		b: "Jennifer Lawrence",
-		c: "Bill Burr",
-		d: "Cat"
-	},
-	{
-		question: "Whats Drews favorite food?",
-		answer: "a",
-		a: "ramen",
-		b: "pizza",
-		c: "Mashed Potatoes",
-		d: "cat"
-	}
-];
+const questions = require('../../data/questions')
+
+// var questions = [
+// 	{
+// 		question: "What cat says meow?",
+// 		answer: "c",
+// 		a: "Tiger",
+// 		b: "Bear",
+// 		c: "Garfield",
+// 		d: "Cat"
+// 	},
+// 	{
+// 		question: "Who would you choose to marry?",
+// 		answer: "b",
+// 		a: "Betty White",
+// 		b: "Jennifer Lawrence",
+// 		c: "Bill Burr",
+// 		d: "Cat"
+// 	},
+// 	{
+// 		question: "Whats Drews favorite food?",
+// 		answer: "a",
+// 		a: "ramen",
+// 		b: "pizza",
+// 		c: "Mashed Potatoes",
+// 		d: "cat"
+// 	}
+// ];
 
 // var scores = {
 // 		DO: 50,
@@ -75,6 +65,7 @@ var questions = [
 
 // localStorage.setItem("scoreboard", JSON.stringify(scores));
 //Global Vars
+
 var scoreboardParsed = JSON.parse(localStorage.getItem("scoreboard"));
 var timeLeft;
 var timeInterval;
@@ -118,64 +109,9 @@ function initialSetup() {
 
 }
 
-function viewToggle(frontPageViewEl, highScoresViewEl, gameViewEl) {
-
-	if (frontPageView === "visible") {
-		frontPageViewEl.classList.add("visible");
-		frontPageViewEl.classList.remove("hidden");
-	} else {
-		frontPageViewEl.classList.remove("visible");
-		frontPageViewEl.classList.add("hidden");
-	};
-
-	if (highScoresView === "visible") {
-		highScoresViewEl.classList.add("visible");
-		highScoresViewEl.classList.remove("hidden");
-	} else {
-		highScoresViewEl.classList.remove("visible");
-		highScoresViewEl.classList.add("hidden");
-	};
-
-	if (gameView === "visible") {
-		gameViewEl.classList.remove("hidden");
-		gameViewEl.classList.add("visible");
-	} else {
-		gameViewEl.classList.remove("visible");
-		gameViewEl.classList.add("hidden");
-	};
-
-};
-
-function frontPageView() { 
-	//Shows the welcome view, hides the favorites view, hides find friends                   
-	viewToggle("visible", "hidden", "hidden");
-};
-
-function highScoresView() {
-	//Shows the find friend view, hides the favorites view, hides welcome
-	viewToggle("hidden", "visible", "hidden");
-};
-function gameView() {
-	//Hides the welcome view, hides the find friend view, shows favorites
-	viewToggle("hidden", "hidden", "visible");
-
-};
-
-const clickContainer = document.querySelector("body");
-clickContainer.addEventListener("click", function (event) {
-	var elementClicked = event.target;
-	if (elementClicked.classList.contains("front-page-view")) {
-		frontPageView()
-	} else if (elementClicked.classList.contains("high-scores-view")) {
-		highScoresView()
-	} else if(elementClicked.classList.contains("game-view")) {
-		gameView()
-	}
-})
-
 //Timer - this is going to be our countdown
 function countdown() {
-	let timeLeft = 15;
+	let timeLeft = 10;
 	// Use the `setInterval()` method to call a function to be executed every 1000 milliseconds
 	timeInterval = setInterval(function () {
 		// As long as the `timeLeft` is greater than 1
@@ -204,9 +140,9 @@ function initialSetup() {
 	score = 0;
 	countDownTimer.textContent = "-";
 	
-	if (highScoresWindow.classList.contains("visible") || questionsWindow.classList.contains("visible")) {
+	if (highScoresViewEl.classList.contains("visible") || gameViewEl.classList.contains("visible")) {
 		//Hides the scores view, hides the questions view, shows intro
-		introView();
+		frontPageView();
 	}
 	changeHighScoreBtnText("High Scores");
 
@@ -306,7 +242,6 @@ function gameOver() {
 	var remainingTime = timeLeft;
 	console.log(remainingTime);
 	clearInterval(timeInterval);
-	return remainingTime;
 };
 // Add Points for correct answer
 function addCorrect() {
@@ -322,30 +257,54 @@ function wrongAnswer() {
 	}
 };
 
-// ALLL THE VIEWS
+// ALL THE VIEWS
 function changeHighScoreBtnText(label) {
 	showScoresBtn.textContent = label;
 }
 
-function introView() {
-	console.log("Intro View Showing.");
-	viewToggle("visible", "hidden", "hidden");
-	changeHighScoreBtnText("High Scores");
-};
-//Also call this when the game ends
-function highScoresView() {
-	console.log("High Scores View Showing.");
-	//Shows the scores view, hides the questions view, hides intro
-	viewToggle("hidden", "hidden", "visible");
-	changeHighScoreBtnText("Back");
+function viewToggle(frontPageView, highScoresView, gameView) {
+
+	if (frontPageView === "visible") {
+		frontPageViewEl.classList.add("visible");
+		frontPageViewEl.classList.remove("hidden");
+	} else {
+		frontPageViewEl.classList.remove("visible");
+		frontPageViewEl.classList.add("hidden");
+	};
+
+	if (highScoresView === "visible") {
+		highScoresViewEl.classList.add("visible");
+		highScoresViewEl.classList.remove("hidden");
+	} else {
+		highScoresViewEl.classList.remove("visible");
+		highScoresViewEl.classList.add("hidden");
+	};
+
+	if (gameView === "visible") {
+		gameViewEl.classList.remove("hidden");
+		gameViewEl.classList.add("visible");
+	} else {
+		gameViewEl.classList.remove("visible");
+		gameViewEl.classList.add("hidden");
+	};
+
 };
 
-function questionsView() {
-	console.log("Questions View Showing.");
-	changeHighScoreBtnText("High Scores");
+function frontPageView() { 
+	//Shows the welcome view, hides the favorites view, hides find friends
+	changeHighScoreBtnText("High Scores");                  
+	viewToggle("visible", "hidden", "hidden");
+};
+
+function highScoresView() {
+	//Shows the find friend view, hides the favorites view, hides welcome
 	
-	//Hides the scores view, hides the questions view, shows intro
-	viewToggle("hidden","visible","hidden");
+	viewToggle("hidden", "visible", "hidden");
+	changeHighScoreBtnText("Back")
+};
+function gameView() {
+	//Hides the welcome view, hides the find friend view, shows favorites
+	viewToggle("hidden", "hidden", "visible");
 
 };
 
@@ -355,15 +314,15 @@ var clickContainer = document.querySelector("body");
 clickContainer.addEventListener("click", function (event) {
 	var element = event.target;
 
-	//If High Scores is clicked. Same button is used for back
+	// //If High Scores is clicked. Same button is used for back
 	if (element === showScoresBtn) {
 		if (showScoresBtn.textContent === "High Scores") {
 			highScoresView();
 		} else {
-			introView();
+			frontPageView();
 		}
 	} else if(element === startBtn) {
-		questionsView();
+		gameView();
 		countdown();
 		displayQuestion(questions);
 	} else if (element === quitBtn || element === playAgain) {
@@ -374,6 +333,14 @@ clickContainer.addEventListener("click", function (event) {
 	//clear scoreboard
 	if (element === clearLeaderboard) {
 		clearScoreboard();
+	}
+	// change view based on click
+	if (element.classList.contains("front-page-view")) {
+		frontPageView()
+	} else if (element.classList.contains("high-scores-view")) {
+		highScoresView()
+	} else if(element.classList.contains("game-view")) {
+		gameView()
 	}
 
 	//Check if the answer selected is correct - Need to make this an event bubble and catch it on the parent
