@@ -24,6 +24,7 @@
                     <p class="center"><button id="start">Start the Party</button></p>
                </section>
                <section class="questions hidden">
+                    <span class="currentScore">Score:<span> 0</span></span>
                     <h2 id="question-text">This will be the question text.</h2>
                     <ul id="possible-answers">
                          <li class="choice" data-answer="a"></li>
@@ -31,13 +32,13 @@
                          <li class="choice" data-answer="c"></li>
                          <li class="choice" data-answer="d"></li>
                     </ul>
-                    <button class="quit front-page-view">Quit</button>
+                    <button class="quit front-page-view">X</button>
                </section>
                <section class="scoreboard hidden">
                     <h2>High Scores</h2>
                     <ol class="high-scores"></ol>
                     <div class="initials-form hidden">
-                         <p>Good job! Your total score is: <span id="final-score">45</span></p>
+                         <p>Good job! Your total score is: <span id="final-score">0</span></p>
                          <form><label for="name">Enter Your Initials:</label><input name="name" maxlength="2" id="initials" type="text" /><br /><button id="initials-submit">Submit</button></form>
                     </div>
 
@@ -45,7 +46,7 @@
                </section>
                <section class="feedback">
                     <div class="answer-feedback">
-
+                         <p>This is some feedback!</p>
                     </div>
                </section>
 
